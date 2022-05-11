@@ -1,7 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 
 
 public class PlayerController : MonoBehaviour
@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     public float speed = 1000f;
     private int score = 0;
     public int health = 5;
+    public Text scoreText;
+    public Text healthText;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,19 +44,31 @@ public class PlayerController : MonoBehaviour
         if(other.gameObject.tag == "Pickup")
         {
             score = score + 1;
-            Debug.Log("Score: " + score);
+            // Debug.Log("Score: " + score);
+            SetScoreText();
             Destroy(other.gameObject);
         }
 
         if(other.gameObject.tag == "Trap")
         {
             health = health - 1;
-            Debug.Log("Health: " + health);
+            // Debug.Log("Health: " + health);
+            SetHealthText();
         }
         if(other.gameObject.tag == "Goal")
         {
             Debug.Log("You win!");
         }
+    }
+
+    void SetScoreText()
+    {
+        scoreText.text = $"Score: {score}";
+    }
+
+    void SetHealthText()
+    {
+        healthText.text = $"Health: {health}";
     }
 
     void Update()
@@ -65,5 +79,6 @@ public class PlayerController : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
+
 
 }
