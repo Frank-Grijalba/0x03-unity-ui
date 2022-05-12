@@ -92,6 +92,10 @@ public class PlayerController : MonoBehaviour
 
             //Debug.Log("Game Over!");
         }
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("menu");
+        }
     }
 
     IEnumerator LoadScene(float seconds)
